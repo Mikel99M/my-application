@@ -43,10 +43,6 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
-	//testing to make replit work
-	// Lombok Dependency
-	compileOnly 'org.projectlombok:lombok:1.18.24' // Check for the latest version
-	annotationProcessor 'org.projectlombok:lombok:1.18.24' // For annotation processing
 
 	// Jackson Dependencies
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2' // Check for the latest version
