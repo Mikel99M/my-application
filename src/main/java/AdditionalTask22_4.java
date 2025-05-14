@@ -1,5 +1,4 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +15,15 @@ public class AdditionalTask22_4 {
     }
 }
 
+@Slf4j
 class Task22_4 {
-
-    private static final Logger logger = LoggerFactory.getLogger(Task22_4.class);
 
     public Integer excecuteTask(String text) {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
             char[] elements = text.toCharArray();
-            List<Character> invalidElements = new ArrayList<Character>();
+            List<Character> invalidElements = new ArrayList<>();
             for(char element : elements) {
                 if(!Character.isDigit(element)) {
                     invalidElements.add(element);
@@ -45,7 +43,7 @@ class Task22_4 {
                 wordInPluralOrSingular = "element is";
             }
 
-            logger.warn("Invalid format. Following " + wordInPluralOrSingular + " illegal: " + sb.toString());
+            log.warn("Invalid format. Following " + wordInPluralOrSingular + " illegal: " + sb);
         }
         return null;
     }
