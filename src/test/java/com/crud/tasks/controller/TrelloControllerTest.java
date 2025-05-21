@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,12 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@SpringJUnitConfig
+@SpringJUnitWebConfig
 @WebMvcTest(TrelloController.class)
 class TrelloControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    private MockMvc mockMvc;
 
     @MockBean
     private TrelloFacade trelloFacade;
@@ -37,8 +37,9 @@ class TrelloControllerTest {
     void shouldFetchEmptyTrelloBoards() throws Exception {
         // Given
         when(trelloFacade.fetchTrelloBoards()).thenReturn(List.of());
+
         //When & Then
-        mvc
+        mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/v1/trello/boards")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -58,7 +59,7 @@ class TrelloControllerTest {
         when(trelloFacade.fetchTrelloBoards()).thenReturn(trelloBoards);
 
         //When and then
-        mvc
+        mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/v1/trello/boards")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -94,7 +95,7 @@ class TrelloControllerTest {
         String jsonContent = gson.toJson(trelloCardDto);
 
         //When and then
-        mvc
+        mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/v1/trello/cards")
                         .contentType(MediaType.APPLICATION_JSON)
