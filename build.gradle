@@ -43,6 +43,8 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 
 	// Jackson Dependencies
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2' // Check for the latest version
